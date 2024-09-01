@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rules',
     'mptt',
     'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -83,7 +85,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vllstore',
+        'NAME': 'marketplace',
         'USER': 'postgres',
         'PASSWORD': 'vllscarf',
         'HOST': 'localhost',
@@ -162,3 +164,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Ваше React-приложение
+    # Добавьте другие источники, если нужно
+]

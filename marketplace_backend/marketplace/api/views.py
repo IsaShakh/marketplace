@@ -13,7 +13,8 @@ from core.settings import MINUTE
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    ordering_fields = ['id']
+    ordering_fields = ['price']
+    ordering = ['id']
     filterset_fields = ['category', 'style']
     filterset_class = ProductFilter
     

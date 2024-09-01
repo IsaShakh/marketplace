@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 from core.helpers import nullable, slugify
 from django.contrib.postgres.indexes import GinIndex
-from django.contrib.postgres.search import SearchVectorField
+from django.contrib.postgres.search import SearchVectorField, SearchVector
 from mptt.models import MPTTModel, TreeForeignKey
 
     
@@ -140,12 +140,21 @@ class Product(models.Model):
     moderation_status = models.CharField(choices=ModerationStatuses.choices,
                                          default=ModerationStatuses.DRAFT, null=False, max_length=2)
     moderator_review = models.TextField(**nullable)
-    search_vector = SearchVectorField(null=True)
+    search_vector = SearchVectorField(null=True, blank=True)
     
     def __str__(self):
         return (f'{self.id} - '
                 f'{"опубликован" if self.published else "не опубликован"} - '
                 f'{self.title}')
+    
+    def save(self, *args, **kwargs):
+        # Убедитесь, что это обновление, а не создание нового объекта
+        if self.pk is not None:
+            self.search_vector = (
+                SearchVector('title', weight='A') +
+                SearchVector('description', weight='B')
+            )
+        super().save(*args, **kwargs)
     
     class Meta:
         indexes = [

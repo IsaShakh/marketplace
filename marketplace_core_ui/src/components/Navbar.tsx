@@ -1,0 +1,54 @@
+import { Link, NavLink } from "react-router-dom";
+import search from '../assets/search.png';
+import profile from '../assets/profile.png';
+import { useContext } from "react";
+import { SearchContext } from "@/context/SearchContext";
+
+type Props = {};
+
+const Navbar = (props: Props) => {
+    const { setShowSearch } = useContext(SearchContext);
+
+    return (
+        <div className="flex items-center justify-between py-5 font-medium">
+            <ul className="hidden sm:flex gap-5 text-sm text-gray-700">
+                <NavLink to='/' className='flex flex-col items-center gap-1'>
+                    <p>Home</p>
+                    <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden"/>
+                </NavLink>
+                <NavLink to='/products' className='flex flex-col items-center gap-1'>
+                    <p>Products</p>
+                    <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden"/>
+                </NavLink>
+                <NavLink to='/about' className='flex flex-col items-center gap-1'>
+                    <p>About</p>
+                    <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden"/>
+                </NavLink>
+                <NavLink to='/support' className='flex flex-col items-center gap-1'>
+                    <p>Support</p>
+                    <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden"/>
+                </NavLink>
+            </ul>
+            <div className="flex items-center gap-6">
+                <img
+                    onClick={() => setShowSearch(true)}
+                    src={search}
+                    alt="search"
+                    className="w-5 cursor-pointer"
+                />
+                <div className="group relative">
+                    <img src={profile} alt="profile" className="w-5 cursor-pointer" />
+                    <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+                        <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-600 rounded">
+                            <p className="cursor-pointer hover:text-black">Profile</p>
+                            <p className="cursor-pointer hover:text-black">Orders</p>
+                            <p className="cursor-pointer hover:text-black">Log out</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Navbar;
