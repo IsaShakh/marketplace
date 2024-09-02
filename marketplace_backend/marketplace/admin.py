@@ -73,7 +73,6 @@ class ReviewPositionAdmin(admin.ModelAdmin):
         'style', 
         'published',
         'price',
-        'moderation_status',
         'brand',
         'amount',
         'city',

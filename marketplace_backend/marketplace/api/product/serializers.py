@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from rest_framework.fields import IntegerField
-from marketplace.models import *
-
+from marketplace.models import Product,ProductImage,Category,Style
 
 
 class ProdcutImageSerializer(serializers.ModelSerializer):
@@ -48,7 +47,9 @@ class ProductDetailSerializer(ProductSerializer):
             'description',
             'amount',
         )
-        
+
+
+
         
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from users.models import User
-from marketplace.api.serializers import ProductSerializer
+from marketplace.api.product.serializers import ProductSerializer
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 

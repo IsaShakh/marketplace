@@ -1,13 +1,19 @@
-from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.db.models import F
-from rest_framework import viewsets
-from .serializers import *
-from marketplace.models import Product, Category, Style
-from marketplace.api.product_filter import ProductFilter
 from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.views.decorators.cache import cache_page
+
+from rest_framework import viewsets
+
+from .serializers import *
 from core.settings import MINUTE
+
+from marketplace.models import Product, Category, Style
+from marketplace.api.product_filter import ProductFilter
+
+
+
+
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -39,7 +45,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         if self.action == 'retrieve':
             return ProductDetailSerializer
         return ProductSerializer
-    
+        
     
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.prefetch_related('products').all()

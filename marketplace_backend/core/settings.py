@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'marketplace',
     'users',
-    'rules',
     'mptt',
     'django_filters',
     'corsheaders',
