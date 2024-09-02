@@ -20,7 +20,7 @@ const Product = (props: Props) => {
 
   const fetchProductData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/products/products/${productId}/`);
+      const response = await fetch(`http://localhost:8000/api/v1/products/${productId}/`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

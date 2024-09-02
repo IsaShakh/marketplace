@@ -31,7 +31,7 @@ const Products = () => {
   const [openCategories, setOpenCategories] = useState<number[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [selectedStyles, setSelectedStyles] = useState<number[]>([]);
-  const [nextPage, setNextPage] = useState<string | null>("http://localhost:8000/api/v1/products/products/");
+  const [nextPage, setNextPage] = useState<string | null>("http://localhost:8000/api/v1/products/");
   const [loading, setLoading] = useState<boolean>(false);
   const [sortType, setSortType] = useState<string>('relavent');
 
@@ -94,7 +94,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    const url = `http://localhost:8000/api/v1/products/products/?category=${selectedCategories.join(',')}&style=${selectedStyles.join(',')}&ordering=${sortType === 'low-high' ? 'price' : sortType === 'high-low' ? '-price' : ''}&search=${search}`; // Добавляем параметр поиска в URL
+    const url = `http://localhost:8000/api/v1/products/?category=${selectedCategories.join(',')}&style=${selectedStyles.join(',')}&ordering=${sortType === 'low-high' ? 'price' : sortType === 'high-low' ? '-price' : ''}&search=${search}`; // Добавляем параметр поиска в URL
     setFilterProducts([]); 
     fetchProducts(url);
   }, [selectedCategories, selectedStyles, sortType, search]); // Добавляем `search` в зависимости
@@ -118,8 +118,8 @@ const Products = () => {
     const fetchCategoriesAndStyles = async () => {
       try {
         const [categoriesResponse, stylesResponse] = await Promise.all([
-          fetch('http://localhost:8000/api/v1/products/categories/'),
-          fetch('http://localhost:8000/api/v1/products/styles/')
+          fetch('http://localhost:8000/api/v1/categories/'),
+          fetch('http://localhost:8000/api/v1/styles/')
         ]);
 
         const categoriesData = await categoriesResponse.json();
