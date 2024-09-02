@@ -52,72 +52,78 @@
 ### Эндпоинты для Users
 #### 1. Регистрация
 ```bash
-URL: /api/v1/users/registration/
+URL: /api/v1/registration/
 Method: POST
 ```
 #### 2. Получение токена
 ```bash
-URL: /api/v1/users/token/
+URL: /api/v1/token/
 Method: POST
 Fields: email, password
 ```
 #### 3. Обновление токена
 ```bash
-URL: /api/v1/users/token/refresh/
+URL: /api/v1/token/refresh/
 Method: POST
 Fields: refresh
 ```
 Каждые 30 минут(можно настроить в core/settings.py)
-
+#### 4. Создание нового продукта пользователем
+```bash
+URL: /api/v1/user/create-product/
+Method: POST
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 5. Отправка на модерацию
+```bash
+URL: /api/v1/user/products/{id}/send_on_moderation/
+Method: POST
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 6. Публикация после ревью модерации
+Срабатывает только если модератор поставил статус "Одобрено" в админ панеле
+```bash
+URL: /api/v1/user/products/{id}/publish/
+Method: POST
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 7. Просмотр своих товаров пользователем
+```bash
+URL: /api/v1/user/products/
+Method: GET
+Headers: Authorization: Bearer <your-token-here>
+```
 ### Эндпоинты для Products
 #### 1. Список всех продуктов
 ```bash
-URL: /api/v1/products/products/
+URL: /api/v1/products/
 Method: GET
 ```
 #### 2. Информация о конкретном продукте
 ```bash
-URL: /api/v1/products/products/{id}/
+URL: /api/v1/products/{id}/
 Method: GET
 ```
-#### 3. Создание нового продукта пользователем
+
+#### 3. Список всех категорий
 ```bash
-URL: /api/v1/products/seller/products/
-Method: POST
-Headers: Authorization: Bearer <your-token-here>
-```
-#### 4. Отправка на модерацию
-```bash
-URL: /api/v1/products/seller/products/{id}/send_on_moderation/
-Method: POST
-Headers: Authorization: Bearer <your-token-here>
-```
-#### 5. Публикация после ревью модерации
-Срабатывает только если модератор поставил статус "Одобрено" в админ панеле
-```bash
-URL: /api/v1/products/seller/products/{id}/publish/
-Method: POST
-Headers: Authorization: Bearer <your-token-here>
-```
-#### 6. Список всех категорий
-```bash
-URL: /api/v1/products/categories/
+URL: /api/v1/categories/
 Method: GET
 ```
 Категории у которых поле Parent не равно null являются ПОДКАТЕГОРИЯМИ 
-#### 7. Информация о конкретной категории
+#### 4. Информация о конкретной категории
 ```bash
-URL: /api/v1/products/categories/{id}/
+URL: /api/v1/categories/{id}/
 Method: GET
 ```
-#### 8. Список всех стилей
+#### 5. Список всех стилей
 ```bash
-URL: /api/v1/products/styles/
+URL: /api/v1/styles/
 Method: GET
 ```
-#### 9. Информация о конкретном стиле
+#### 6. Информация о конкретном стиле
 ```bash
-URL: /api/v1/products/styles/{id}/
+URL: /api/v1/styles/{id}/
 Method: GET
 ```
 

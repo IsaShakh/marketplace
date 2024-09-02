@@ -22,8 +22,8 @@ from users.api.views import UserViewSet
 app_name = 'vllstore'
 
 api = [
-    path('products/', include('marketplace.urls')),
-    path('users/', include('users.urls')),
+    path('', include('marketplace.urls')),
+    path('', include('users.urls')),
 ]
 
 
