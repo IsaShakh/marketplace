@@ -30,5 +30,6 @@ api = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(api)),
-    re_path(r'^api/v1/users/(?P<id_or_me>\d+|me)/$', UserViewSet.as_view({'get': 'retrieve'}), name='user-detail'),
+    re_path(r'^api/v1/user/(?P<id_or_me>\d+|me)/$', UserViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update', 'put': 'update'}), name='user-detail'),
+
 ]

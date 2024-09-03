@@ -91,10 +91,41 @@ URL: /api/v1/user/products/{id}/publish/
 Method: POST
 Headers: Authorization: Bearer <your-token-here>
 ```
-#### 7. Просмотр своих товаров пользователем
+#### 7. Изменение товара(создание модификации)
+```bash
+URL: /api/v1/user/products/{id}/
+Method: PATCH
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 8. Отправка модификации на модерацию
+```bash
+URL: /api/v1/user/products/{modification_id}/send_on_moderation/
+Method: POST
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 9. Публикация модификации после ревью модерации
+Срабатывает только если модератор поставил статус "Одобрено" в админ панеле, оригинал товара больше не опубликован(в дальнейшем добавиться архивация товаров)
+```bash
+URL: /api/v1/user/products/{modification_id}/publish/
+Method: POST
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 10. Просмотр своих товаров пользователем
 ```bash
 URL: /api/v1/user/products/
 Method: GET
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 11. Просмотр своего профиля
+```bash
+URL: /api/v1/user/me/
+Method: GET
+Headers: Authorization: Bearer <your-token-here>
+```
+#### 12. Изменение данных своего профиля
+```bash
+URL: /api/v1/user/me/
+Method: POST/PUT
 Headers: Authorization: Bearer <your-token-here>
 ```
 ### Эндпоинты для Products

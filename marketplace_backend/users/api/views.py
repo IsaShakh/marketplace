@@ -4,7 +4,7 @@ from users.models import User
 from .serializers import RegisterSerializer, UserProfileSerializer, MyTokenObtainPairSerializer
 from rest_framework.generics import CreateAPIView
 from core.helpers import DefaultViewSetMixin
-from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.exceptions import ValidationError
@@ -15,7 +15,7 @@ from rest_framework_simplejwt.views import (
 # Create your views here.
 
 
-class UserViewSet(RetrieveModelMixin, GenericViewSet):
+class UserViewSet(RetrieveModelMixin, GenericViewSet, UpdateModelMixin):
     lookup_value_regex = '\\d+|me'
     lookup_field = 'id_or_me'
     serializer_class = UserProfileSerializer

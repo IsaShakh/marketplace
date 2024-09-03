@@ -148,13 +148,13 @@ class Product(models.Model):
                 f'{self.title}')
     
     def save(self, *args, **kwargs):
-        # Убедитесь, что это обновление, а не создание нового объекта
         if self.pk is not None:
             self.search_vector = (
                 SearchVector('title', weight='A') +
                 SearchVector('description', weight='B')
             )
         super().save(*args, **kwargs)
+
     
     class Meta:
         indexes = [
