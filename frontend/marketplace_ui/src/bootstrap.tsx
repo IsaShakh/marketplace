@@ -1,10 +1,5 @@
 import ReactDOM from "react-dom/client";
-
-import MarketplaceComponent from "@components/MarketplaceComponent";
-
-const App = () => {
-  return <MarketplaceComponent />;
-};
+import { App } from "./app";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
