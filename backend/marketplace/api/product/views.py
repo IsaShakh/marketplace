@@ -4,6 +4,7 @@ from django.contrib.postgres.search import SearchQuery, SearchRank
 from django.views.decorators.cache import cache_page
 
 from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 
 from .serializers import *
 from core.settings import MINUTE
@@ -23,6 +24,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     ordering = ['id']
     filterset_fields = ['category', 'style']
     filterset_class = ProductFilter
+    permission_classes = [AllowAny]
     
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
@@ -53,6 +55,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = '__all__'
     search_fields = ['name']
     pagination_class = None
+    permission_classes = [AllowAny]
     
     @method_decorator(cache_page(1 * MINUTE))
     def list(self, request, *args, **kwargs):
@@ -70,6 +73,7 @@ class StyleViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = '__all__'
     search_fields = ['name']
     pagination_class = None
+    permission_classes = [AllowAny]
     
     @method_decorator(cache_page(1 * MINUTE))
     def list(self, request, *args, **kwargs):

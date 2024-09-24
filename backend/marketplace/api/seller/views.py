@@ -1,7 +1,9 @@
 from rest_framework.response import Response
 from rest_framework.serializers import ValidationError
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
+from core.permissions import *
 from core.api.viewsets import AppViewSet
 from marketplace.models import Product
 from marketplace.api.product_filter import ProductFilter
@@ -15,6 +17,7 @@ class SellerProductViewSet(AppViewSet):
     search_fields = ['title']
     filterset_fields = ['category', 'style']
     filterset_class = ProductFilter
+    permission_classes = [IsAuthenticated, CanSell, IsAdmin, IsModerator]
 
     serializer_action_classes = {
         'retrieve': SellerProductDetailSerializer,

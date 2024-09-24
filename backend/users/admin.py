@@ -15,7 +15,6 @@ class CustomUserAdmin(UserAdmin):
             "email",
             "email_verified",
             "phone",
-            "city",
             "birthday",
         )}),
         (_("Personal info"), {"fields": (

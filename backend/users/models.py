@@ -68,6 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
+    selling_access = models.BooleanField(default=True, help_text='Access for selling')
     
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

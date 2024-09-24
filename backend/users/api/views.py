@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from users.models import User
 
+from core.permissions import IsAdmin, IsModerator
 from .serializers import RegisterSerializer, UserProfileSerializer, MyTokenObtainPairSerializer
 from rest_framework.generics import CreateAPIView
 from core.helpers import DefaultViewSetMixin
@@ -20,7 +21,7 @@ class UserViewSet(RetrieveModelMixin, GenericViewSet, UpdateModelMixin):
     lookup_field = 'id_or_me'
     serializer_class = UserProfileSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsModerator, IsAdmin]
 
     def get_object(self) -> User:
         if self.kwargs.get(self.lookup_field) != 'me':
